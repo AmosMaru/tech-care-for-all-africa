@@ -2,8 +2,10 @@ import api from "../api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../token";
+import { config } from "../token";
 import "../styles/AuthForm.css";
 import google from "../assets/google.png";
+
 
 
 const AuthForm = ({ route, method}) => {
@@ -55,7 +57,7 @@ const AuthForm = ({ route, method}) => {
     };
 
     const handleGoogleLogin = () => {
-        window.location.href = "http://0.0.0.0:8000/api/accounts/google/login/";
+        window.location.href = `${config.BACKEND_URL}/api/accounts/google/login/`;
     };
 
     return (

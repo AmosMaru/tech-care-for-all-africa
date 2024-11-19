@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GOOGLE_ACCESS_TOKEN } from "../token";
+import { config } from "../token";
 
 function RedirectGoogleAuth() {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ function RedirectGoogleAuth() {
 
             //verify the token from the backend
             axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-            axios.get('http://localhost:8000/api/auth/user/')
+            axios.get(`${config.BACKEND_URL}/api/auth/user/`)
                 .then(response => {
                     console.log('User data:', response.data);
                     navigate('/')

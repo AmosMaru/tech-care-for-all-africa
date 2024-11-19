@@ -2,7 +2,7 @@ import "../styles/Product.css";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ACCESS_TOKEN, GOOGLE_ACCESS_TOKEN } from "../token";
-
+import { config } from "../token";
 export default function Product() {  
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -32,7 +32,7 @@ export default function Product() {
 
             // Add search parameter to URL if search term exists
             const searchParam = search ? `?search=${encodeURIComponent(search)}` : '';
-            const response = await axios.get(`http://127.0.0.1:8000/api/products_list/${searchParam}`, {
+            const response = await axios.get(`${config.BACKEND_URL}/api/products_list/${searchParam}`, {
                 headers: {
                     'Authorization': `Bearer ${authToken}`,
                     'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ export default function Product() {
         const authToken = googleToken || jwtToken;
         
         axios.post(
-            `http://127.0.0.1:8000/api/add_to_product_to_cart/${productId}/`,
+            `${config.BACKEND_URL}/api/add_to_product_to_cart/${productId}/`,
             { amount: 1 },  // Just send the amount
             {
                 headers: {
@@ -101,7 +101,7 @@ function handleDeleteProduct(productId) {
     const authToken = googleToken || jwtToken;
     
     
-    axios.delete(`http://127.0.0.1:8000/api/delete_product/${productId}/`, {
+    axios.delete(`${config.BACKEND_URL}/api/delete_product/${productId}/`, {
         headers: {
             'Authorization': `Bearer ${authToken}`,
             'Content-Type': 'application/json'
@@ -130,7 +130,7 @@ function handleDeleteProduct(productId) {
             };
 
             await axios.post(
-                'http://127.0.0.1:8000/api/crreate_product/',
+                '${config.BACKEND_URL}/api/crreate_product/',
                 productData,
                 {
                     headers: {
