@@ -1,57 +1,133 @@
-# Screening Test 
-### Please complete this task without using ChatGPT or any other AI model to do the test. This will ensure a genuine assessment of your skills and capabilities. 
+# Tech Care For All Africa 
 
-1. Create a simple Python service (Django or FastAPI Frameworks) 
-2. Design a simple customers and orders database. 
-3. Add a REST or GraphQL API to input / upload customers and orders:
-    - Customers have simple details e.g., name and code. 
-    - Orders have simple details e.g., item, amount, and time. 
-4. Implement authentication and authorization via OpenID Connect 
-5. When an order is added, send the customer an SMS alerting them (you can use the Africa’s Talking SMS gateway and sandbox) 
-6. Implement data structures to: 
-- efficiently manage and retrieve customers and orders. 
-- Implement a search functionality to find orders within a given date range. - Optimize the process of sending SMS alerts. 
-7. Write unit tests (with coverage checking) and set up CI + automated CD. You can deploy to any PAAS/FAAS/IAAS of your choice 
-8. Write a README for the project and host it on your GitHub
+Assesment task for TC4A
+
+![Tech Care For All Africa Logo](frontend/src/assets/landing.png)
 
 
+## Tech Stack
 
-1. Create a simple python service(FastApi) 
+- **Backend**: Django/Django REST Framework
+- **Frontend**: React
+- **Database**: SQLite
+- **Authentication**: OpenID Connect using google 
+- **SMS Gateway**: Tiara Connect
+- **Testing**: Django Test Suite
+- **CI/CD**: GitHub Actions
 
-Step `1`    : Install fastapi
+## Project Structure
 
-```python
-pip install fastapi
+```
+├── backend/
+│   └── ...
+├── frontend/
+│   └── ...
+├── .github/
+│   └── workflows/Backend.yml
+└── README.md
 
 ```
 
+## Database Schema
+
+
+![Tech Care For All Africa Logo](frontend/src/assets/db_schama.png)
+### Users
+- id (Primary Key)
+- name (VARCHAR)
+
+### Products
+- id (Primary Key)
+- name (VARCHAR)
+- description (TEXT)
+
+### Orders
+- id (Primary Key)
+- user_id (Foreign Key)
+- created_at (TIMESTAMP)
+
+### Order Items
+- id (Primary Key)
+- order_id (Foreign Key)
+- product_id (Foreign Key)
+- amount (DECIMAL)
+- created_at (TIMESTAMP)
+
+## API Endpoints
+
+### Authentication
+- `POST /api/token/` - Get JWT token
+- `POST /api/token/refresh/` - Refresh JWT token
+
+### Products
+- `GET /api/products_list/` - List all products
+- `POST /api/crreate_product/` - Create a product
+- `DELETE /api/delete_product/{id}/` - Delete a product
+
+### Orders
+- `GET /api/order_list/` - List user's orders
+- `POST /api/add_to_product_to_cart/{id}/` - Add product to cart
+- `DELETE /api/delete_order_item/{id}/` - Delete order item
+
+### SMS 
+- `POST /api/send_sms/` - Send checkout SMS
 
 
 
-2. Design a simple customers and orders database. 
+## Getting Started
 
+1. Clone the repository:
+```bash
+git clone https://github.com/AmosMaru/tech-care-for-all-africa.git
+cd tech-care-for-all-africa
 ```
-CREATE TABLE users (
-    id BIGINT PRIMARY KEY,
-    name VARCHAR(255)
-);
 
-CREATE TABLE orders (
-    id BIGINT PRIMARY KEY,
-    user_id BIGINT REFERENCES users(id)
-);
-
-CREATE TABLE order_items (
-    id BIGINT PRIMARY KEY,
-    order_id BIGINT REFERENCES orders(id),
-    product_id BIGINT REFERENCES products(id),
-    amount DECIMAL(10,2),
-    created_at TIMESTAMP
-);
-
-CREATE TABLE products (
-    id BIGINT PRIMARY KEY,
-    name VARCHAR(255),
-    description TEXT
-);
+2. Install backend dependencies:
+```bash
+cd backend
+pip install -r requirements.txt
 ```
+
+3. Run migrations:
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+4. Create a `.env` file:
+```
+SMS_URL=your_africas_talking_url
+SMS_API_KEY=your_api_key
+SMS_FROM=your_sender_id
+```
+
+5. Run the development server:
+```bash
+python manage.py runserver
+```
+
+6. Install frontend dependencies:
+```bash
+cd ../frontend
+npm install
+```
+
+7. Start the frontend development server:
+```bash
+npm run dev
+```
+
+## Testing
+
+### Backend Tests
+```bash
+cd backend
+python manage.py test
+```
+
+## CI/CD
+
+The project uses GitHub Actions for CI/CD:
+
+- Runs tests on every push and pull request
+- Automated on merge to main branch
