@@ -55,7 +55,7 @@ const AuthForm = ({ route, method}) => {
     };
 
     const handleGoogleLogin = () => {
-        window.location.href = "http://localhost:8000/api/accounts/google/login/";
+        window.location.href = "http://0.0.0.0:8000/api/accounts/google/login/";
     };
 
     return (
