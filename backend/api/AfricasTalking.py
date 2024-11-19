@@ -2,8 +2,8 @@
 
 # # Initialize SDK    
 # africastalking.initialize(
-#     username='kilushmaru254',
-#     api_key='atsk_c441844f9b086a1543d4cba00363e5e1f3c14d9c4a79879cd5b1cb95bcbc733310bbfcf9'
+#     username='',
+#     api_key=''
 # )
 
 # sms = africastalking.SMS
