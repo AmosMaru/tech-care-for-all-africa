@@ -29,6 +29,14 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:5173',  
+    'https://tc4a.backend.kilush.com/'
+    'https://tc4a.kilush.com/'
+]
+
+# If using cookies for authentication
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
@@ -169,3 +177,4 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 SOCIALACCOUNT_STORE_TOKENS = True
+

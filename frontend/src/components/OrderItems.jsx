@@ -2,6 +2,8 @@ import "../styles/Product.css";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ACCESS_TOKEN, GOOGLE_ACCESS_TOKEN } from "../token";
+import { config } from "../token";
+
 
 export default function Product() {  
     const [orders, setOrders] = useState([]);
@@ -23,7 +25,7 @@ export default function Product() {
                 }
 
                 // First fetch orders
-                const ordersResponse = await axios.get('http://127.0.0.1:8000/api/order_list/', {
+                const ordersResponse = await axios.get(`${config.BACKEND_URL}/api/order_list/`, {
                     headers: {
                         'Authorization': `Bearer ${authToken}`,
                         'Content-Type': 'application/json'
@@ -37,7 +39,7 @@ export default function Product() {
                 const productDetails = {};
 
                 await Promise.all(productIds.map(async (productId) => {
-                    const productResponse = await axios.get(`http://127.0.0.1:8000/api/product_details/${productId}/`, {
+                    const productResponse = await axios.get(`${config.BACKEND_URL}/api/product_details/${productId}/`, {
                         headers: {
                             'Authorization': `Bearer ${authToken}`,
                             'Content-Type': 'application/json'
@@ -87,7 +89,7 @@ export default function Product() {
 
             // Send SMS
             await axios.post(
-                'http://127.0.0.1:8000/api/send_sms/',  // Create this endpoint in your Django backend
+                `${config.BACKEND_URL}/api/send_sms/`,  // Create this endpoint in your Django backend
                 {
                     phone_number: phoneNumber,
                     message: message
@@ -232,7 +234,7 @@ function handleDeleteProduct(orderItemId) {
     const googleToken = localStorage.getItem(GOOGLE_ACCESS_TOKEN);
     const authToken = googleToken || jwtToken;
     
-    axios.delete(`http://127.0.0.1:8000/api/delete_order_item/${orderItemId}/`, {
+    axios.delete(`${config.BACKEND_URL}/api/delete_order_item/${orderItemId}/`, {
         headers: {
             'Authorization': `Bearer ${authToken}`,
             'Content-Type': 'application/json'
