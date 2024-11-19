@@ -1,0 +1,14 @@
+asgiref
+Django
+django-allauth
+django-cors-headers
+djangorestframework
+djangorestframework-simplejwt
+requests
+cryptography
+PyJWT
+pytz
+sqlparse
+africastalking
+psycopg2-binary
+python-dotenv
