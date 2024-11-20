@@ -31,8 +31,39 @@ ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',  
-    'https://tc4a.backend.kilush.com/'
-    'https://tc4a.kilush.com/'
+    'https://tc4a.backend.kilush.com/',
+    'https://tc4a.kilush.com/',
+    'https://tc4a.backend.kilush.com'
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'https://tc4a.backend.kilush.com',
+    'https://tc4a.kilush.com',
+    'http://localhost:5173',
+    'http://localhost:3000',
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
 ]
 
 # If using cookies for authentication
