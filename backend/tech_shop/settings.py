@@ -31,14 +31,14 @@ ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',  
-    'https://tc4a.backend.kilush.com/'
-    'https://tc4a.kilush.com/'
+    'https://tc4a.backend.kilush.com/',
+    'https://tc4a.kilush.com/',
     'https://tc4a.backend.kilush.com'
 ]
 
 CORS_ALLOWED_ORIGINS = [
     'https://tc4a.backend.kilush.com',
-    'https://tc4a.kilush.com/',
+    'https://tc4a.kilush.com',
     'http://localhost:5173',
     'http://localhost:3000',
 ]
