@@ -60,10 +60,10 @@ def google_login_callback(request):
         print('Google token found:', token.token)
         refresh = RefreshToken.for_user(user)
         access_token = str(refresh.access_token)
-        return redirect(f'https://tc4a.kilush.com//login/callback/?access_token={access_token}')
+        return redirect(f'https://tc4a.kilush.com/login/callback/?access_token={access_token}')
     else:
         print('No Google token found for user', user)
-        return redirect(f'https://tc4a.kilush.com//login/callback/?error=NoGoogleToken')
+        return redirect(f'https://tc4a.kilush.com/login/callback/?error=NoGoogleToken')
 
 
 @csrf_exempt
