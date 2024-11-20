@@ -16,13 +16,13 @@ import requests
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+import os
 
 load_dotenv()
 endpoint = os.getenv('SMS_URL')
 api_key = os.getenv('SMS_API_KEY')
 from_ = os.getenv('SMS_FROM')
 
-import os
 
 User = get_user_model()
 
