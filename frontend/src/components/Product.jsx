@@ -130,7 +130,7 @@ function handleDeleteProduct(productId) {
             };
 
             await axios.post(
-                '${config.BACKEND_URL}/api/crreate_product/',
+                `${config.BACKEND_URL}/api/crreate_product/`,
                 productData,
                 {
                     headers: {

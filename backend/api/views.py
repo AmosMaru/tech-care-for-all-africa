@@ -17,7 +17,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 
-
+load_dotenv()
+endpoint = os.getenv('SMS_URL')
+api_key = os.getenv('SMS_API_KEY')
+from_ = os.getenv('SMS_FROM')
 
 import os
 
@@ -142,9 +145,7 @@ class SendSMSView(APIView):
             )
 
         try:
-            endpoint = os.getenv('SMS_URL')
-            api_key = os.getenv('SMS_API_KEY')
-            from_ = os.getenv('SMS_FROM')
+            
 
             sms_request = {
                 'to': phone_number,
